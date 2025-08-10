@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>이륜·4륜자동차 위반 점검 체크리스트</title>
+<style>
+  body { font-family: sans-serif; padding: 1rem; background-color: #f7f7f7; }
+  .hidden { display: none; }
+  .section { margin-bottom: 2rem; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+  button { padding: 0.5rem 1rem; margin-top: 1rem; cursor: pointer; }
+  label { display: block; margin: 0.5rem 0; position: relative; }
+  .penalty { color: red; }
+  .law { color: blue; text-decoration: underline; cursor: pointer; }
+  .confirm-title { color: blue; margin-left: 2rem; display: block; }
+  .confirm-item { color: blue; margin-left: 3rem; display: block; }
+</style>
+</head>
+<body>
+
+<div class="section">
+  <h2>1.해당 항목 선택 </h2>
+  <label><input type="radio" name="차량" value="2륜"> 2륜자동차</label>
+  <label><input type="radio" name="차량" value="4륜"> 4륜자동차</label>
+  <label><input type="radio" name="차량" value="번호판가림"> 번호판 가림</label>
+</div>
+
+<div class="section hidden" id="운행여부섹션">
+  <h2>2. 운행 여부를 선택하세요</h2>
+  <label><input type="radio" name="운행" value="운행"> 운행</label>
+  <label><input type="radio" name="운행" value="미운행"> 미운행</label>
+</div>
+
+<!-- 2륜 체크리스트 -->
+<div class="section hidden" id="2륜운행체크">
+  <h2>3. [2륜] 운행시 위반 여부 점검</h2>
+  <label><input type="checkbox" data-law="1년 이하의 징역 또는 1000만원 이하의 벌금 (자동차손해배상보장법 제46조제3항)"> 의무보험 미가입 운행
+    <div class="confirm-area hidden"><span class="confirm-title">유의사항</span><span class="confirm-item">- 소유자 처벌</span></div>
+  </label>
+  <label><input type="checkbox" data-law="300만원 이하의 과태료 (자동차관리법 제48조제1항)"> 미신고 운행</label>
+  <label><input type="checkbox" data-law="300만원 이하의 과태료 (자동차관리법 제49조제1항)"> 번호판 미부착 운행</label>
+  <label><input type="checkbox" data-law="100만원 이하의 과태료 (자동차관리법 제49조제2항)"> 신고 후 번호판 미부착</label>
+</div>
+
+<div class="section hidden" id="2륜미운행체크">
+  <h2>3. [2륜] 미운행시 위반 여부 점검</h2>
+  <label><input type="checkbox" data-law="100만원 이하의 과태료 (자동차관리법 제49조제2항)"> 신고 후 번호판 미부착</label>
+</div>
+
+<!-- 4륜 체크리스트 -->
+<div class="section hidden" id="4륜운행체크">
+  <h2>3. [4륜] 운행시 위반 여부 점검</h2>
+  <label><input type="checkbox" data-law="1년 이하의 징역 또는 1000만원 이하의 벌금 (자동차손해배상보장법 제46조제3항)"> 의무보험 미가입 운행</label>
+  <label><input type="checkbox" data-law="300만원 이하의 과태료 (자동차관리법 제5조, 자동차관리법 제79조제1호)"> 무등록 운행</label>
+  <label><input type="checkbox" data-law="300만원 이하의 과태료 (자동차관리법 제10조제4항)"> 번호판 미부착 운행</label>
+</div>
+
+<div class="section hidden" id="4륜미운행체크">
+  <h2>3. [4륜] 미운행시 위반 여부 점검</h2>
+  <label><input type="checkbox" data-law="? (?)"> ?</label>
+</div>
+
+<!-- 번호판 가리 체크리스트 -->
+<div class="section hidden" id="번호판가리체크">
+  <h2>3. 번호판 가리기 위반 유형</h2>
+  <label><input type="checkbox" data-law="1년 이하의 징역 또는 1000만원 이하의 벌금 (자동차손해배상보장법 제10조제5항, 자동차관리법 제81조 제1호의2)"><span class="penalty">고의로</span> 번호판을 가리거나 알아보지 곤란하게 한 자</label>
+  <label><input type="checkbox" data-law="300만원 이하의 과태료 (자동차관리법 제10조제5항,자동차관리법 제84조 제3항 제2호)">번호판을 가리거나 알아보지 곤란하게 한 자 및 그런 자동차를 운행한 자</label>
+</div>
+
+<div class="section hidden" id="summarySection">
+  <h2>4. 위반 항목 요약</h2>
+  <ul id="summaryList"></ul>
+</div>
+
+<script>
+document.querySelectorAll('input[name="차량"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    const 차량값 = radio.value;
+
+    if (차량값 === "번호판가림") {
+      document.getElementById('운행여부섹션').classList.add('hidden');
+      ['2륜운행체크', '2륜미운행체크', '4륜운행체크', '4륜미운행체크', '번호판가리체크'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+      document.getElementById('번호판가리체크').classList.remove('hidden');
+      document.getElementById('summarySection').classList.add('hidden');
+      document.querySelectorAll('input[name="운행"]').forEach(r => r.checked = false);
+    } else {
+      document.getElementById('운행여부섹션').classList.remove('hidden');
+      ['2륜운행체크', '2륜미운행체크', '4륜운행체크', '4륜미운행체크', '번호판가리체크'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+      document.getElementById('summarySection').classList.add('hidden');
+      document.querySelectorAll('input[name="운행"]').forEach(r => r.checked = false);
+    }
+  });
+});
+
+document.querySelectorAll('input[name="운행"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    const 차량 = document.querySelector('input[name="차량"]:checked')?.value;
+    if (!차량 || 차량 === "번호판가림") return;
+    ['2륜운행체크', '2륜미운행체크', '4륜운행체크', '4륜미운행체크', '번호판가리체크'].forEach(id => {
+      document.getElementById(id).classList.add('hidden');
+    });
+    if (차량 === '2륜' && radio.value === '운행') document.getElementById('2륜운행체크').classList.remove('hidden');
+    if (차량 === '2륜' && radio.value === '미운행') document.getElementById('2륜미운행체크').classList.remove('hidden');
+    if (차량 === '4륜' && radio.value === '운행') document.getElementById('4륜운행체크').classList.remove('hidden');
+    if (차량 === '4륜' && radio.value === '미운행') document.getElementById('4륜미운행체크').classList.remove('hidden');
+    document.getElementById('summarySection').classList.add('hidden');
+  });
+});
+
+document.addEventListener('change', e => {
+  if (e.target.matches('input[type="checkbox"]')) {
+    showSummary();
+    showConfirm(e);
+  }
+});
+
+function showSummary() {
+  const summaryList = document.getElementById('summaryList');
+  summaryList.innerHTML = '';
+  const activeSection = document.querySelector('.section:not(.hidden) input[type="checkbox"]')?.closest('.section');
+  const checkboxes = activeSection?.querySelectorAll('input[type="checkbox"]:checked') || [];
+
+  if (checkboxes.length === 0) {
+    summaryList.innerHTML = '<li>해당 사항 없음</li>';
+  } else {
+    checkboxes.forEach(checkbox => {
+      const li = document.createElement('li');
+      li.style.marginBottom = '1rem';
+
+      const label = checkbox.parentElement;
+      const 복사본 = label.cloneNode(true);
+      복사본.querySelectorAll('.confirm-area').forEach(e => e.remove());
+      const 전체텍스트 = 복사본.textContent.trim();
+      const 법률정보 = checkbox.dataset.law;
+
+      const 처분매칭 = 법률정보.match(/^(.*?)(\s*\(.*\))$/);
+      let 처분 = 법률정보;
+      let 법조항부분 = '';
+
+      if (처분매칭) {
+        처분 = 처분매칭[1].trim();
+        법조항부분 = 처분매칭[2].replace(/[()]/g, '').trim();
+      }
+
+      li.textContent = 전체텍스트;
+
+      const 처벌Div = document.createElement('div');
+      처벌Div.innerHTML = '&nbsp;&nbsp;<span class="penalty">' + 처분 + '</span>';
+      li.appendChild(처벌Div);
+
+      if (법조항부분) {
+        const 법조항들 = 법조항부분.split(/\s*,\s*/);
+        법조항들.forEach(법조항 => {
+          const 링크매칭 = 법조항.match(/(.*?법)\s*제(\d+)조/);
+          if (링크매칭) {
+            const 법령명 = 링크매칭[1].trim().replace(/\s/g, '');
+            const 조번호 = 링크매칭[2].trim();
+            const 링크 = `https://www.law.go.kr/법령/${encodeURIComponent(법령명)}/제${조번호}조`;
+
+            const a = document.createElement('a');
+            a.href = 링크;
+            a.target = "_blank";
+            a.className = "law";
+            a.textContent = 법조항;
+            const div = document.createElement('div');
+            div.innerHTML = '&nbsp;&nbsp;&nbsp;';
+            div.appendChild(a);
+            li.appendChild(div);
+          } else {
+            const div = document.createElement('div');
+            div.innerHTML = '&nbsp;&nbsp;&nbsp;<span class="law">' + 법조항 + '</span>';
+            li.appendChild(div);
+          }
+        });
+      }
+      summaryList.appendChild(li);
+    });
+  }
+  document.getElementById('summarySection').classList.remove('hidden');
+}
+
+function showConfirm(e) {
+  const checkbox = e.target;
+  const label = checkbox.parentElement;
+  const confirmArea = label.querySelector('.confirm-area');
+  if (confirmArea) {
+    confirmArea.classList.toggle('hidden', !checkbox.checked);
+  }
+}
+</script>
+
+</body>
+</html>
