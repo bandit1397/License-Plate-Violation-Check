@@ -34,6 +34,8 @@
 <!-- 2륜 체크리스트 -->
 <div class="section hidden" id="2륜운행체크">
   <h2>3. [2륜] 운행시 위반 여부 점검</h2>
+
+  <!-- ✅ 의무보험 미가입 운행(보유자 처벌)만 1차/2차 구조 -->
   <label>
     <input type="checkbox" 
       data-law1="1년 이하의 징역 또는 1000만원 이하의 벌금" 
@@ -43,6 +45,7 @@
     의무보험 미가입 운행(보유자 처벌)
     <div class="confirm-area hidden"></div>
   </label>
+
   <label>
     <input type="checkbox" 
       data-law1="300만원 이하의 과태료" 
@@ -50,6 +53,7 @@
     미신고 운행
     <div class="confirm-area hidden"></div>
   </label>
+
   <label>
     <input type="checkbox" 
       data-law1="300만원 이하의 과태료/운행자 처벌" 
@@ -73,6 +77,8 @@
 <!-- 4륜 체크리스트 -->
 <div class="section hidden" id="4륜운행체크">
   <h2>3. [4륜] 운행시 위반 여부 점검</h2>
+
+  <!-- ✅ 1차/2차 구분 있음 -->
   <label>
     <input type="checkbox" 
       data-law1="1년 이하의 징역 또는 1000만원 이하의 벌금" 
@@ -82,6 +88,7 @@
     의무보험 미가입 운행
     <div class="confirm-area hidden"></div>
   </label>
+
   <label>
     <input type="checkbox" 
       data-law1="300만원 이하의 과태료" 
@@ -89,6 +96,7 @@
     무등록 운행
     <div class="confirm-area hidden"></div>
   </label>
+
   <label>
     <input type="checkbox" 
       data-law1="300만원 이하의 과태료" 
@@ -129,7 +137,6 @@
 document.querySelectorAll('input[name="차량"]').forEach(radio => {
   radio.addEventListener('change', () => {
     const 차량값 = radio.value;
-
     if (차량값 === "번호판가림") {
       document.getElementById('운행여부섹션').classList.add('hidden');
       ['2륜운행체크','2륜미운행체크','4륜운행체크','4륜미운행체크','번호판가리체크'].forEach(id=>{
@@ -173,13 +180,15 @@ function showConfirm(e){
   if(!confirmArea)return;
 
   if(checkbox.checked){
+    const titleText = checkbox.parentElement.textContent.trim();
+    const isInsuranceViolation = titleText.includes("의무보험 미가입");
+
     const 처벌1=checkbox.dataset.law1 || '';
     const 법조항1=checkbox.dataset.lawlink1 || '';
-    const 처벌2=checkbox.dataset.law2 || '';
-    const 법조항2=checkbox.dataset.lawlink2 || '';
+    const 처벌2=isInsuranceViolation ? (checkbox.dataset.law2 || '') : '';
+    const 법조항2=isInsuranceViolation ? (checkbox.dataset.lawlink2 || '') : '';
 
     let html='';
-
     if(처벌1){
       html+=`<div class="sub-title">1차: <span class="penalty">${처벌1}</span></div>`;
       html+=makeLawLinks(법조항1);
