@@ -10,9 +10,10 @@
   .section { margin-bottom: 2rem; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
   button { padding: 0.5rem 1rem; margin-top: 1rem; cursor: pointer; }
   label { display: block; margin: 0.5rem 0; position: relative; }
-  .penalty { color: red; }
+  .penalty { color: red; font-weight: bold; }
   .law { color: blue; text-decoration: underline; cursor: pointer; }
   .confirm-area { margin-left: 1rem; margin-top: 0.3rem; background: #eef3ff; padding: 0.5rem; border-left: 3px solid #337ab7; border-radius: 4px; }
+  .sub-title { margin-top: 0.5rem; font-weight: bold; color: #333; }
 </style>
 </head>
 <body>
@@ -34,17 +35,25 @@
 <div class="section hidden" id="2륜운행체크">
   <h2>3. [2륜] 운행시 위반 여부 점검</h2>
   <label>
-    <input type="checkbox" data-law="1년 이하의 징역 또는 1000만원 이하의 벌금/보유자 처벌 (자동차손해배상보장법 제8조,자동차손해배상보장법 제46조제3항 제2호)">
+    <input type="checkbox" 
+      data-law1="1년 이하의 징역 또는 1000만원 이하의 벌금" 
+      data-lawlink1="자동차손해배상보장법 제8조,자동차손해배상보장법 제46조제3항 제2호"
+      data-law2="통고처분" 
+      data-lawlink2="자동차손해배상보장법 제8조">
     의무보험 미가입 운행(보유자 처벌)
     <div class="confirm-area hidden"></div>
   </label>
   <label>
-    <input type="checkbox" data-law="300만원 이하의 과태료 (자동차관리법 제48조제1항, 자동차관리법 제84조제3항 9호)">
+    <input type="checkbox" 
+      data-law1="300만원 이하의 과태료" 
+      data-lawlink1="자동차관리법 제48조제1항,자동차관리법 제84조제3항 9호">
     미신고 운행
     <div class="confirm-area hidden"></div>
   </label>
   <label>
-    <input type="checkbox" data-law="300만원 이하의 과태료/운행자 처벌 (자동차관리법 제49조제1항, 자동차관리법 제84조제3항 10호)">
+    <input type="checkbox" 
+      data-law1="300만원 이하의 과태료/운행자 처벌" 
+      data-lawlink1="자동차관리법 제49조제1항,자동차관리법 제84조제3항 10호">
     번호판 미부착 운행
     <div class="confirm-area hidden"></div>
   </label>
@@ -53,7 +62,9 @@
 <div class="section hidden" id="2륜미운행체크">
   <h2>3. [2륜] 미운행시 위반 여부 점검</h2>
   <label>
-    <input type="checkbox" data-law="100만원 이하의 과태료 (자동차관리법 제49조제2항, 자동차관리법 제84조제4항 18의3호)">
+    <input type="checkbox" 
+      data-law1="100만원 이하의 과태료" 
+      data-lawlink1="자동차관리법 제49조제2항,자동차관리법 제84조제4항 18의3호">
     신고 후 번호판 미부착
     <div class="confirm-area hidden"></div>
   </label>
@@ -63,17 +74,25 @@
 <div class="section hidden" id="4륜운행체크">
   <h2>3. [4륜] 운행시 위반 여부 점검</h2>
   <label>
-    <input type="checkbox" data-law="1년 이하의 징역 또는 1000만원 이하의 벌금 (자동차손해배상보장법 제46조제3항)">
+    <input type="checkbox" 
+      data-law1="1년 이하의 징역 또는 1000만원 이하의 벌금" 
+      data-lawlink1="자동차손해배상보장법 제46조제3항"
+      data-law2="통고처분" 
+      data-lawlink2="자동차손해배상보장법 제46조제3항">
     의무보험 미가입 운행
     <div class="confirm-area hidden"></div>
   </label>
   <label>
-    <input type="checkbox" data-law="300만원 이하의 과태료 (자동차관리법 제5조, 자동차관리법 제79조제1호)">
+    <input type="checkbox" 
+      data-law1="300만원 이하의 과태료" 
+      data-lawlink1="자동차관리법 제5조,자동차관리법 제79조제1호">
     무등록 운행
     <div class="confirm-area hidden"></div>
   </label>
   <label>
-    <input type="checkbox" data-law="300만원 이하의 과태료 (자동차관리법 제10조제4항)">
+    <input type="checkbox" 
+      data-law1="300만원 이하의 과태료" 
+      data-lawlink1="자동차관리법 제10조제4항">
     번호판 미부착 운행
     <div class="confirm-area hidden"></div>
   </label>
@@ -82,7 +101,7 @@
 <div class="section hidden" id="4륜미운행체크">
   <h2>3. [4륜] 미운행시 위반 여부 점검</h2>
   <label>
-    <input type="checkbox" data-law="? (?)"> ?
+    <input type="checkbox" data-law1="? (?)"> ?
     <div class="confirm-area hidden"></div>
   </label>
 </div>
@@ -91,12 +110,16 @@
 <div class="section hidden" id="번호판가리체크">
   <h2>3. 번호판 가리기 위반 유형</h2>
   <label>
-    <input type="checkbox" data-law="1년 이하의 징역 또는 1000만원 이하의 벌금 (자동차손해배상보장법 제10조제5항, 자동차관리법 제81조 제1호의2)">
+    <input type="checkbox" 
+      data-law1="1년 이하의 징역 또는 1000만원 이하의 벌금" 
+      data-lawlink1="자동차손해배상보장법 제10조제5항,자동차관리법 제81조 제1호의2">
     <span class="penalty">고의로</span> 번호판을 가리거나 알아보지 곤란하게 한 자
     <div class="confirm-area hidden"></div>
   </label>
   <label>
-    <input type="checkbox" data-law="300만원 이하의 과태료 (자동차관리법 제10조제5항,자동차관리법 제84조 제3항 제2호)">
+    <input type="checkbox" 
+      data-law1="300만원 이하의 과태료" 
+      data-lawlink1="자동차관리법 제10조제5항,자동차관리법 제84조 제3항 제2호">
     번호판을 가리거나 알아보지 곤란하게 한 자 및 그런 자동차를 운행한 자
     <div class="confirm-area hidden"></div>
   </label>
@@ -146,41 +169,49 @@ document.addEventListener('change', e=>{
 
 function showConfirm(e){
   const checkbox=e.target;
-  const label=checkbox.parentElement;
-  const confirmArea=label.querySelector('.confirm-area');
+  const confirmArea=checkbox.parentElement.querySelector('.confirm-area');
   if(!confirmArea)return;
+
   if(checkbox.checked){
-    const 법률정보=checkbox.dataset.law;
-    const 처분매칭=법률정보.match(/^(.*?)(\s*\(.*\))$/);
-    let 처분=법률정보;
-    let 법조항부분='';
+    const 처벌1=checkbox.dataset.law1 || '';
+    const 법조항1=checkbox.dataset.lawlink1 || '';
+    const 처벌2=checkbox.dataset.law2 || '';
+    const 법조항2=checkbox.dataset.lawlink2 || '';
 
-    if(처분매칭){
-      처분=처분매칭[1].trim();
-      법조항부분=처분매칭[2].replace(/[()]/g,'').trim();
+    let html='';
+
+    if(처벌1){
+      html+=`<div class="sub-title">1차: <span class="penalty">${처벌1}</span></div>`;
+      html+=makeLawLinks(법조항1);
+    }
+    if(처벌2){
+      html+=`<div class="sub-title">2차: <span class="penalty">${처벌2}</span></div>`;
+      html+=makeLawLinks(법조항2);
     }
 
-    let html='<div><span class="penalty">'+처분+'</span></div>';
-
-    if(법조항부분){
-      const 법조항들=법조항부분.split(/\s*,\s*/);
-      법조항들.forEach(법조항=>{
-        const 링크매칭=법조항.match(/(.*?법)\s*제(\d+)조/);
-        if(링크매칭){
-          const 법령명=링크매칭[1].trim().replace(/\s/g,'');
-          const 조번호=링크매칭[2].trim();
-          const 링크=`https://www.law.go.kr/법령/${encodeURIComponent(법령명)}/제${조번호}조`;
-          html+=`<div><a href="${링크}" target="_blank" class="law">${법조항}</a></div>`;
-        } else {
-          html+=`<div><span class="law">${법조항}</span></div>`;
-        }
-      });
-    }
     confirmArea.innerHTML=html;
     confirmArea.classList.remove('hidden');
   } else {
     confirmArea.classList.add('hidden');
   }
+}
+
+function makeLawLinks(법조항문자열){
+  if(!법조항문자열)return '';
+  const 법조항들=법조항문자열.split(/\s*,\s*/);
+  let html='';
+  법조항들.forEach(법조항=>{
+    const 매칭=법조항.match(/(.*?법)\s*제(\d+)조/);
+    if(매칭){
+      const 법령명=매칭[1].trim().replace(/\s/g,'');
+      const 조번호=매칭[2].trim();
+      const 링크=`https://www.law.go.kr/법령/${encodeURIComponent(법령명)}/제${조번호}조`;
+      html+=`<div><a href="${링크}" target="_blank" class="law">${법조항}</a></div>`;
+    } else {
+      html+=`<div><span class="law">${법조항}</span></div>`;
+    }
+  });
+  return html;
 }
 </script>
 
