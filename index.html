@@ -175,30 +175,39 @@ document.addEventListener('change', e=>{
 });
 
 function showConfirm(e){
-  const checkbox=e.target;
-  const confirmArea=checkbox.parentElement.querySelector('.confirm-area');
-  if(!confirmArea)return;
+  const checkbox = e.target;
+  const confirmArea = checkbox.parentElement.querySelector('.confirm-area');
+  if(!confirmArea) return;
 
   if(checkbox.checked){
-    const titleText = checkbox.parentElement.textContent.trim();
-    const isInsuranceViolation = titleText.includes("의무보험 미가입");
+    const 처벌1 = checkbox.dataset.law1 || '';
+    const 법조항1 = checkbox.dataset.lawlink1 || '';
+    const 처벌2 = checkbox.dataset.law2 || '';
+    const 법조항2 = checkbox.dataset.lawlink2 || '';
 
-    const 처벌1=checkbox.dataset.law1 || '';
-    const 법조항1=checkbox.dataset.lawlink1 || '';
-    const 처벌2=isInsuranceViolation ? (checkbox.dataset.law2 || '') : '';
-    const 법조항2=isInsuranceViolation ? (checkbox.dataset.lawlink2 || '') : '';
+    let html = '';
+    const 항목명 = checkbox.parentElement.textContent.trim();
 
-    let html='';
-    if(처벌1){
-      html+=`<div class="sub-title">1차: <span class="penalty">${처벌1}</span></div>`;
-      html+=makeLawLinks(법조항1);
+    // 의무보험 미가입 운행일 경우만 1차/2차 구분 표시
+    if (항목명.includes("의무보험 미가입 운행")) {
+      if (처벌1) {
+        html += `<div class="sub-title">1차: <span class="penalty">${처벌1}</span></div>`;
+        html += makeLawLinks(법조항1);
+      }
+      if (처벌2) {
+        html += `<div class="sub-title">2차: <span class="penalty">${처벌2}</span></div>`;
+        html += makeLawLinks(법조항2);
+      }
+    } 
+    // 그 외 항목은 단순 표시 (1차, 2차 구분 제거)
+    else {
+      if (처벌1) {
+        html += `<div class="sub-title"><span class="penalty">${처벌1}</span></div>`;
+        html += makeLawLinks(법조항1);
+      }
     }
-    if(처벌2){
-      html+=`<div class="sub-title">2차: <span class="penalty">${처벌2}</span></div>`;
-      html+=makeLawLinks(법조항2);
-    }
 
-    confirmArea.innerHTML=html;
+    confirmArea.innerHTML = html;
     confirmArea.classList.remove('hidden');
   } else {
     confirmArea.classList.add('hidden');
@@ -226,3 +235,4 @@ function makeLawLinks(법조항문자열){
 
 </body>
 </html>
+
