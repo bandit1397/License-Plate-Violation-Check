@@ -38,11 +38,11 @@
   <!-- ✅ 의무보험 미가입 운행(보유자 처벌)만 1차/2차 구조 -->
   <label>
     <input type="checkbox" 
-      data-law1="1년 이하의 징역 또는 1000만원 이하의 벌금" 
-      data-lawlink1="자동차손해배상보장법 제8조,자동차손해배상보장법 제46조제3항 제2호"
-      data-law2="통고처분" 
-      data-lawlink2="자동차손해배상보장법 제8조">
-    의무보험 미가입 운행(보유자 처벌)
+      data-law1="통고처분" 
+      data-lawlink1="자동차손해배상보장법 제50조,자동차손해배상보장법 제51조"
+      data-law2="1년 이하의 징역 또는 1000만원 이하의 벌금" 
+      data-lawlink2="자동차손해배상보장법 제8조,자동차손해배상보장법 제46조제3항 제2호">
+    의무보험 미가입 운행<span class="penalty">(보유자 처벌)</span>
     <div class="confirm-area hidden"></div>
   </label>
 
@@ -50,15 +50,15 @@
     <input type="checkbox" 
       data-law1="300만원 이하의 과태료" 
       data-lawlink1="자동차관리법 제48조제1항,자동차관리법 제84조제3항 9호">
-    미신고 운행
+    미신고 운행<span class="penalty">(운행자 처벌)</span>
     <div class="confirm-area hidden"></div>
   </label>
 
   <label>
     <input type="checkbox" 
-      data-law1="300만원 이하의 과태료/운행자 처벌" 
+      data-law1="300만원 이하의 과태료" 
       data-lawlink1="자동차관리법 제49조제1항,자동차관리법 제84조제3항 10호">
-    번호판 미부착 운행
+    번호판 미부착 운행<span class="penalty">(운행자 처벌)</span>
     <div class="confirm-area hidden"></div>
   </label>
 </div>
@@ -81,27 +81,27 @@
   <!-- ✅ 1차/2차 구분 있음 -->
   <label>
     <input type="checkbox" 
-      data-law1="1년 이하의 징역 또는 1000만원 이하의 벌금" 
-      data-lawlink1="자동차손해배상보장법 제46조제3항"
-      data-law2="통고처분" 
-      data-lawlink2="자동차손해배상보장법 제46조제3항">
-    의무보험 미가입 운행
+      data-law1="통고처분" 
+      data-lawlink1="자동차손해배상보장법 제50조,자동차손해배상보장법 제51조"
+      data-law2="1년 이하의 징역 또는 1000만원 이하의 벌금" 
+      data-lawlink2="자동차손해배상보장법 제8조,자동차손해배상보장법 제46조제3항 제2호">
+    의무보험 미가입 운행<span class="penalty">(보유자 처벌)</span>
+    <div class="confirm-area hidden"></div>
+  </label>
+
+  <label>
+    <input type="checkbox" 
+      data-law1="3년 이하의 징역 3천만원 이하의 벌금" 
+      data-lawlink1="자동차관리법 제5조,자동차관리법 제79조 1호">
+    무등록 운행<span class="penalty">(운행자 처벌)</span>
     <div class="confirm-area hidden"></div>
   </label>
 
   <label>
     <input type="checkbox" 
       data-law1="300만원 이하의 과태료" 
-      data-lawlink1="자동차관리법 제5조,자동차관리법 제79조제1호">
-    무등록 운행
-    <div class="confirm-area hidden"></div>
-  </label>
-
-  <label>
-    <input type="checkbox" 
-      data-law1="300만원 이하의 과태료" 
-      data-lawlink1="자동차관리법 제10조제4항">
-    번호판 미부착 운행
+      data-lawlink1="자동차관리법 제10조제4항,자동차관리법 제84호제3항 1호">
+    번호판 미부착 운행<span class="penalty">(운행자 처벌)</span>
     <div class="confirm-area hidden"></div>
   </label>
 </div>
@@ -120,14 +120,14 @@
   <label>
     <input type="checkbox" 
       data-law1="1년 이하의 징역 또는 1000만원 이하의 벌금" 
-      data-lawlink1="자동차손해배상보장법 제10조제5항,자동차관리법 제81조 제1호의2">
+      data-lawlink1="자동차관리법 제10조제5항, 자동차관리법 제81조 1의2호">
     <span class="penalty">고의로</span> 번호판을 가리거나 알아보지 곤란하게 한 자
     <div class="confirm-area hidden"></div>
   </label>
   <label>
     <input type="checkbox" 
       data-law1="300만원 이하의 과태료" 
-      data-lawlink1="자동차관리법 제10조제5항,자동차관리법 제84조 제3항 제2호">
+      data-lawlink1="자동차관리법 제10조제5항,자동차관리법 제84조 제3항 2호">
     번호판을 가리거나 알아보지 곤란하게 한 자 및 그런 자동차를 운행한 자
     <div class="confirm-area hidden"></div>
   </label>
@@ -235,3 +235,11 @@ function makeLawLinks(법조항문자열){
 
 </body>
 </html>
+
+
+
+
+
+
+
+
