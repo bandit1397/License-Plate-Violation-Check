@@ -339,7 +339,7 @@ document.getElementById('opinionForm').addEventListener('submit', async function
   };
 
   try {
-    await fetch("https://script.google.com/macros/s/AKfycbyqrPCldUPQcZ9B_67PRPWQKilfz-AVhG9OAvaeAbWl4i_CvgtTEnuQ4KyVmFUdYwcYUw/exec", {
+    await fetch("https://script.google.com/macros/s/AKfycbyqrPCldUPQcZ9B_67PRPWQKilfz-AVhG9OAvaeAbWl4i_CvgtTEnuQ4KyVmFUdYwcYUw/exec", {   // ← 여기만 교체
       method: "POST",
       body: JSON.stringify(payload),
       headers: { "Content-Type": "application/json" }
@@ -348,7 +348,6 @@ document.getElementById('opinionForm').addEventListener('submit', async function
     sendStatus.innerText = "전송 완료! 감사합니다.";
     sendStatus.style.color = "green";
 
-    // 입력창 초기화
     document.getElementById('name').value = "";
     document.getElementById('message').value = "";
     
@@ -358,6 +357,7 @@ document.getElementById('opinionForm').addEventListener('submit', async function
   }
 });
 </script>
+
 
 </div>
 
@@ -381,5 +381,6 @@ document.getElementById('opinionForm').addEventListener('submit', async function
  
 </body>
 </html>
+
 
 
