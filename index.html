@@ -310,13 +310,22 @@ function makeLawLinks(법조항문자열){
 </script>
 
 <!-- 여기에 의견 남기기 버튼 삽입 -->
-<!-- 의견 남기기 버튼 자리에 삽입한 FormSubmit 폼 -->
 <div class="section" style="margin-top: 2rem;">
   <h2>의견 남기기</h2>
 
   <form action="https://formsubmit.co/bandit1397@gmail.com" method="POST">
-    <!-- 제목(Subject) -->
+
+    <!-- 필수 hidden 설정 -->
     <input type="hidden" name="_subject" value="웹앱 의견 도착!">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_charset" value="UTF-8">
+
+    <!-- 전송 후 이동할 페이지 (필수는 아님, 권장) -->
+    <input type="hidden" name="_next" value="https://bandit1397.github.io/success.html">
+
+    <!-- 스팸봇 방지 -->
+    <input type="text" name="_honey" style="display:none">
 
     <label for="msg">의견을 적어주세요:</label>
     <textarea id="msg" name="message" rows="4" required
@@ -328,6 +337,7 @@ function makeLawLinks(법조항문자열){
     </button>
   </form>
 </div>
+
 
 
 </div>
@@ -352,5 +362,6 @@ function makeLawLinks(법조항문자열){
  
 </body>
 </html>
+
 
 
