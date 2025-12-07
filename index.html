@@ -339,7 +339,7 @@ document.getElementById('opinionForm').addEventListener('submit', async function
   };
 
   try {
-    await fetch("YOUR_SCRIPT_URL_HERE", {
+    await fetch("https://script.google.com/macros/s/AKfycbyqrPCldUPQcZ9B_67PRPWQKilfz-AVhG9OAvaeAbWl4i_CvgtTEnuQ4KyVmFUdYwcYUw/exec", {
       method: "POST",
       body: JSON.stringify(payload),
       headers: { "Content-Type": "application/json" }
@@ -381,4 +381,5 @@ document.getElementById('opinionForm').addEventListener('submit', async function
  
 </body>
 </html>
+
 
