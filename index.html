@@ -312,11 +312,13 @@ function makeLawLinks(법조항문자열){
 <div class="container">
   <h2>오류 / 추가 의견 보내기</h2>
 
-  <form action="https://tally.so/r/J9qLoo" method="POST" target="_blank">
-    <input type="text" name="entry.YOUR_NAME_ID" placeholder="이름(선택)" style="display:none;">
-    <textarea name="entry.YOUR_MESSAGE_ID" required style="width:100%;height:120px;"></textarea>
-    <button type="submit">의견 제출</button>
-  </form>
+  <button 
+  style="padding:12px 20px; font-size:16px; background:#007bff; color:white; border:none; border-radius:6px; cursor:pointer;"
+  onclick="window.open('https://tally.so/r/J9qLoo', '_blank');"
+  >
+  의견 제출
+</button>
+
   
 </div>
 
@@ -343,5 +345,6 @@ function makeLawLinks(법조항문자열){
  
 </body>
 </html>
+
 
 
