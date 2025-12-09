@@ -309,18 +309,18 @@ function makeLawLinks(법조항문자열){
 }
 </script>
 
-<div class="container">
-  <h2>오류 / 추가 의견 보내기</h2>
+ 
 
-  <button 
-  style="padding:12px 20px; font-size:16px; background:#007bff; color:white; border:none; border-radius:6px; cursor:pointer;"
-  onclick="window.open('https://tally.so/r/J9qLoo', '_blank');"
-  >
-  의견 제출
-</button>
+  <div style="text-align: center;">
+    <button 
+      style="padding:12px 20px; font-size:16px; background:#007bff; color:white; border:none; border-radius:6px; cursor:pointer;"
+      onclick="window.open('https://tally.so/r/J9qLoo', '_blank');"
+    >
+      오류 및 의견(적극 반영)
+    </button>
+  </div>
 
-  
-</div>
+ 
 
 
 </div>
@@ -345,5 +345,8 @@ function makeLawLinks(법조항문자열){
  
 </body>
 </html>
+
+
+
 
 
