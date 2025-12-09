@@ -311,14 +311,21 @@ function makeLawLinks(법조항문자열){
 
  
 
-  <div style="text-align: center;">
-    <button 
-      style="padding:12px 20px; font-size:16px; background:#007bff; color:white; border:none; border-radius:6px; cursor:pointer;"
-      onclick="window.open('https://tally.so/r/J9qLoo', '_blank');"
-    >
-      오류 및 의견(적극 반영)
-    </button>
-  </div>
+  <!-- 사용자가 직접 보지 못하도록 최소 높이 -->
+<iframe 
+  src="https://tally.so/r/J9qLoo"
+  style="width:100%; height:1px; border:0; overflow:hidden; pointer-events:none;"
+></iframe>
+
+<div style="text-align: center; margin-top:20px;">
+  <button 
+    style="padding:12px 20px; font-size:16px; background:#007bff; color:white; border:none; border-radius:6px; cursor:pointer;"
+    onclick="window.open('https://tally.so/r/J9qLoo', '_blank');"
+  >
+    오류 및 의견(적극 반영)
+  </button>
+</div>
+
 
  
 
@@ -345,6 +352,7 @@ function makeLawLinks(법조항문자열){
  
 </body>
 </html>
+
 
 
 
