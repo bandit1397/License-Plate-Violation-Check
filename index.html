@@ -312,53 +312,18 @@ function makeLawLinks(법조항문자열){
 <div class="container">
   <h2>오류 / 추가 의견 보내기</h2>
 
-  <form id="opinionForm">
+  <form action="https://tally.so/r/J9qLoo" method="GET" target="_blank">
     
     <label>이름 (선택)</label>
-    <input type="text" id="name" placeholder="익명 가능" />
+    <input type="text" name="name" placeholder="익명 가능" />
 
     <label>의견 내용 (필수)</label>
-    <textarea id="message" required placeholder="남기실 의견을 입력해주세요"></textarea>
+    <textarea name="message" required placeholder="남기실 의견을 입력해주세요"></textarea>
 
     <button type="submit">의견 제출</button>
-
-    <div id="sendStatus"></div>
   </form>
-</div>
-
-<script>
-document.getElementById('opinionForm').addEventListener('submit', async function(e){
-  e.preventDefault();
   
-  const sendStatus = document.getElementById('sendStatus');
-  sendStatus.innerText = "전송 중입니다...";
-
-  const payload = {
-    name: document.getElementById('name').value || "익명",
-    message: document.getElementById('message').value
-  };
-
-  try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbyrITj7E4LJzlQaQMXCt0eeCz7eajkDEVW9dJBxzY46KTEzV-cT0Rbs1lhpXSBTNRD5TA/exec", {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: { "Content-Type": "application/json" }
-    });
-
-    const result = await res.json();
-
-    if (result.result === "success") {
-      sendStatus.innerText = "전송되었습니다! 감사합니다.";
-      document.getElementById('opinionForm').reset();
-    } else {
-      sendStatus.innerText = "오류 발생. 다시 시도해주세요.";
-    }
-  } catch (err) {
-    console.error(err);
-    sendStatus.innerText = "서버 오류. 다시 시도해주세요.";
-  }
-});
-</script>
+</div>
 
 
 </div>
@@ -383,3 +348,4 @@ document.getElementById('opinionForm').addEventListener('submit', async function
  
 </body>
 </html>
+
